@@ -1,0 +1,484 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Capitalist</title>
+    <style>
+        * {
+            user-select: none;
+            margin: 0%;
+            padding: 0%;
+            text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .left-side-container {
+            padding-right: 5px;
+        }
+
+        .container-l1 {
+            display: flex;
+            border: 1px solid;
+            padding-right: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 5px;
+            background-color: white;
+            border-radius: 70px;
+            margin-bottom: 5px;
+        }
+
+        .large-chamber {
+            background-color: white;
+            height: 110px;
+            width: 110px;
+            border: 0px solid;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+            align-items: center;
+        }
+
+        .small-chamber {
+            cursor: pointer;
+            background-color: gray;
+            height: 50px;
+            width: 50px;
+            border: 1px black solid;
+            border-radius: 50%;
+            padding: 15px;
+        }
+
+        .turuncu {
+            width: 0;
+            margin-left: 26px;
+            background-color: orange;
+            height: 100px;
+            transform: translate(0, -20px);
+        }
+
+        .trans {
+            position: absolute;
+            z-index: 3;
+            transform: translate(60px, 15px);
+        }
+
+        .value {
+            overflow: hidden;
+            z-index: 2;
+            display: flex;
+
+        }
+
+        .timer {
+            font-style: italic;
+            position: absolute;
+            transform: translate(180px, 15px);
+        }
+
+        .kazan {
+            font-style: italic;
+            position: absolute;
+            transform: translate(40px, -5px);
+        }
+
+        .para {
+            background-color: gray;
+            height: 40px;
+            width: 230px;
+            border: 1px solid black;
+            border-top-right-radius: 50px;
+            margin-left: -50px;
+            margin-bottom: 10px;
+
+            margin-top: 10px;
+        }
+
+        .upgrade {
+            cursor: pointer;
+            background-color: gray;
+            width: 200px;
+            height: 10px;
+            border: black 1px solid;
+            border-bottom-right-radius: 50px;
+            margin-left: -50px;
+            margin-top: -25px;
+            padding: 15px;
+        }
+
+        .buy-text {
+            font-style: italic;
+            transform: translateY(-5px);
+            z-index: 2;
+            text-align: start;
+        }
+
+        .manager-area {
+            padding: 5px;
+            margin-left: -300px;
+            margin-right: 150px;
+        }
+
+        h4 {
+            border-bottom: 1px solid red;
+            padding: 2px;
+        }
+
+        .all-managers li {
+            line-height: 23px;
+            border-radius: 20px;
+            padding: 5px;
+            margin-block: 10px;
+            list-style-type: none;
+        }
+
+        .manager-block {
+            display: flex;
+        }
+
+        .manager-fiyat li {
+            border: 1px solid;
+            border-radius: 20px;
+            padding: 5px;
+            margin-block: 10px;
+            list-style-type: none;
+            margin-left: 5px;
+        }
+
+        #balance {
+            margin-left: 120px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1 id="balance">0</h1>
+    </div>
+    <div class="main-container">
+        <div class="manager-area">
+            <h4>Managers</h4>
+            <div class="manager-block">
+                <ul class="all-managers">
+                    <li class="domates-manager">domates manager></li>
+                    <li class="dergi-manager">dergi manager></li>
+                    <li class="elbise-manager">elbise manager></li>
+                    <li class="kulaklık-manager">kulaklık manager></li>
+                    <li class="mücevher-manager">mücevher manager></li>
+                    <li class="telefon-manager">telefon manager></li>
+                    <li class="varil-manager">varil manager></li>
+                    <li class="tesla-manager">tesla manager></li>
+                    <li class="roket-manager">roket manager></li>
+                    <li class="eboy-manager">eboy manager></li>
+                </ul>
+                <ul class="manager-fiyat">
+                    <li id="domates_manager" style="cursor: pointer;" onclick="domates_manager()">1000 $</li>
+                    <li id="dergi_manager" style="cursor: pointer;" onclick="dergi_manager()">15000 $</li>
+                    <li id="elbise_manager" style="cursor: pointer;" onclick="elbise_manager()">100000 $</li>
+                    <li id="kulaklık_manager" style="cursor: pointer;" onclick="kulaklık_manager()">500000 $</li>
+                    <li id="mucevher_manager" style="cursor: pointer;" onclick="mucevher_manager()">1.2 milyon $</li>
+                    <li id="telefon_manager" style="cursor: pointer;" onclick="telefon_manager()">10 milyon $</li>
+                    <li id="varil_manager" style="cursor: pointer;" onclick="varil_manager()">111 milyon $</li>
+                    <li id="tesla_manager" style="cursor: pointer;" onclick="tesla_manager()">555 milyon $</li>
+                    <li id="roket_manager" style="cursor: pointer;" onclick="roket_manager()">10 milyar $</li>
+                    <li id="eboy_manager" style="cursor: pointer;" onclick="eboy_manager()">100 milyar $</li>
+                </ul>
+            </div>
+        </div>
+        <div class="left-side-container">
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 onclick="domates_tobalance()" id="domates" class="small-chamber">1</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="domates_value" class="trans">1</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/0,5sn</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="domates_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="domates_cost" class="upgrade">4</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 onclick="dergi_tobalance()" id="dergi" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="dergi_value" class="trans">60</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/3sn</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="dergi_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="dergi_cost" class="upgrade">60</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="elbise" onclick="elbise_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="elbise_value" class="trans">540</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/6sn</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="elbise_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="elbise_cost" class="upgrade">720</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="kulaklık" onclick="kulaklık_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="kulaklık_value" class="trans">4320</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/12sn</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="kulaklık_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="kulaklık_cost" class="upgrade">8640</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="mucevher" onclick="mucevher_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="mucevher_value" class="trans">51840</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/24sn</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="mucevher_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="mucevher_cost" class="upgrade">103680</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-side-container">
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="telefon" onclick="telefon_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="telefon_value" class="trans">622080</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/48sn</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="telefon_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="telefon_cost" class="upgrade">1244160</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="varil" onclick="varil_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="varil_value" class="trans">7464000</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/1:36</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="varil_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="varil_cost" class="upgrade">14929920</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="tesla" onclick="tesla_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="tesla_value" class="trans">89000000</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/3:12</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="tesla_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="tesla_cost" class="upgrade">179159040</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="roket" onclick="roket_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="roket_value" class="trans">1074000000</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/6:24</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="roket_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="roket_cost" class="upgrade">2149000000</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-l1">
+                <div class="large-chamber">
+                    <h1 id="eboy" onclick="eboy_tobalance()" class="small-chamber">0</h1>
+                </div>
+                <div class="l1-right">
+                    <div class="value para">
+                        <div id="eboy_value" class="trans">29668000000</div>
+                        <div class="turuncu"></div>
+                        <div class="timer">/12:48</div>
+                        <div class="kazan">Kazanç</div>
+                    </div>
+                    <div style="cursor:pointer" onclick="eboy_amount_plus()">
+                        <div class="buy-text">Satın Al</div>
+                        <div id="eboy_cost" class="upgrade">25798000000</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        var balance = 0;
+
+        const allsample = [
+            [1, 4, 1, true, true, document.querySelector("#domates"), document.querySelector("#domates_cost"), document.querySelector("#domates_value"), 0, 1, 500, "500ms", document.querySelector("#domates_value+.turuncu"), 1.07],
+            [0, 60, 0, true, true, document.querySelector("#dergi"), document.querySelector("#dergi_cost"), document.querySelector("#dergi_value"), 1, 60, 3000, "3s", document.querySelector("#dergi_value+.turuncu"), 1.15],
+            [0, 720, 0, true, true, document.querySelector("#elbise"), document.querySelector("#elbise_cost"), document.querySelector("#elbise_value"), 2, 540, 6000, "6s", document.querySelector("#elbise_value+.turuncu"), 1.14],
+            [0, 8640, 0, true, true, document.querySelector("#kulaklık"), document.querySelector("#kulaklık_cost"), document.querySelector("#kulaklık_value"), 3, 4320, 12000, "12s", document.querySelector("#kulaklık_value+.turuncu"), 1.13],
+            [0, 103680, 0, true, true, document.querySelector("#mucevher"), document.querySelector("#mucevher_cost"), document.querySelector("#mucevher_value"), 4, 51840, 24000, "24s", document.querySelector("#mucevher_value+.turuncu"), 1.12],
+            [0, 1244160, 0, true, true, document.querySelector("#telefon"), document.querySelector("#telefon_cost"), document.querySelector("#telefon_value"), 5, 622080, 48000, "48s", document.querySelector("#telefon_value+.turuncu"), 1.11],
+            [0, 14929920, 0, true, true, document.querySelector("#varil"), document.querySelector("#varil_cost"), document.querySelector("#varil_value"), 6, 7464000, 96000, "96s", document.querySelector("#varil_value+.turuncu"), 1.10],
+            [0, 179159040, 0, true, true, document.querySelector("#tesla"), document.querySelector("#tesla_cost"), document.querySelector("#tesla_value"), 7, 89000000, 192000, "192s", document.querySelector("#tesla_value+.turuncu"), 1.09],
+            [0, 2149000000, 0, true, true, document.querySelector("#roket"), document.querySelector("#roket_cost"), document.querySelector("#roket_value"), 8, 1074000000, 384000, "384s", document.querySelector("#roket_value+.turuncu"), 1.08],
+            [0, 28798000000, 0, true, true, document.querySelector("#eboy"), document.querySelector("#eboy_cost"), document.querySelector("#eboy_value"), 9, 29668000000, 768000, "768s", document.querySelector("#eboy_value+.turuncu"), 1.07],
+
+        ];
+        const allmanager = [1000, 15000, 100000, 500000, 1200000, 10000000, 111000000, 555000000, 10000000000, 100000000000];
+        const alldom = [document.querySelector("#domates_manager"), document.querySelector("#dergi_manager"), document.querySelector("#elbise_manager"), document.querySelector("#kulaklık_manager"), document.querySelector("#mucevher_manager"), document.querySelector("#telefon_manager"), document.querySelector("#varil_manager"), document.querySelector("#tesla_manager"), document.querySelector("#roket_manager"), document.querySelector("#eboy_manager")]
+        allsample[0][5].style.background = "orange";
+        function domates_amount_plus() { amount_plus(allsample[0][0], allsample[0][1], allsample[0][2], allsample[0][3], allsample[0][4], allsample[0][5], allsample[0][6], allsample[0][7], allsample[0][8], allsample[0][9], allsample[0][10], allsample[0][11], allsample[0][12], allsample[0][13]) }
+        function domates_tobalance() { tobalance(allsample[0][0], allsample[0][1], allsample[0][2], allsample[0][3], allsample[0][4], allsample[0][5], allsample[0][6], allsample[0][7], allsample[0][8], allsample[0][9], allsample[0][10], allsample[0][11], allsample[0][12], allsample[0][13]) }
+        function dergi_amount_plus() { amount_plus(allsample[1][0], allsample[1][1], allsample[1][2], allsample[1][3], allsample[1][4], allsample[1][5], allsample[1][6], allsample[1][7], allsample[1][8], allsample[1][9], allsample[1][10], allsample[1][11], allsample[1][12], allsample[1][13]) }
+        function dergi_tobalance() { tobalance(allsample[1][0], allsample[1][1], allsample[1][2], allsample[1][3], allsample[1][4], allsample[1][5], allsample[1][6], allsample[1][7], allsample[1][8], allsample[1][9], allsample[1][10], allsample[1][11], allsample[1][12], allsample[1][13]) }
+        function elbise_amount_plus() { amount_plus(allsample[2][0], allsample[2][1], allsample[2][2], allsample[2][3], allsample[2][4], allsample[2][5], allsample[2][6], allsample[2][7], allsample[2][8], allsample[2][9], allsample[2][10], allsample[2][11], allsample[2][12], allsample[2][13]) }
+        function elbise_tobalance() { tobalance(allsample[2][0], allsample[2][1], allsample[2][2], allsample[2][3], allsample[2][4], allsample[2][5], allsample[2][6], allsample[2][7], allsample[2][8], allsample[2][9], allsample[2][10], allsample[2][11], allsample[2][12], allsample[2][13]) }
+        function kulaklık_amount_plus() { amount_plus(allsample[3][0], allsample[3][1], allsample[3][2], allsample[3][3], allsample[3][4], allsample[3][5], allsample[3][6], allsample[3][7], allsample[3][8], allsample[3][9], allsample[3][10], allsample[3][11], allsample[3][12], allsample[3][13]) }
+        function kulaklık_tobalance() { tobalance(allsample[3][0], allsample[3][1], allsample[3][2], allsample[3][3], allsample[3][4], allsample[3][5], allsample[3][6], allsample[3][7], allsample[3][8], allsample[3][9], allsample[3][10], allsample[3][11], allsample[3][12], allsample[3][13]) }
+        function mucevher_amount_plus() { amount_plus(allsample[4][0], allsample[4][1], allsample[4][2], allsample[4][3], allsample[4][4], allsample[4][5], allsample[4][6], allsample[4][7], allsample[4][8], allsample[4][9], allsample[4][10], allsample[4][11], allsample[4][12], allsample[4][13]) }
+        function mucevher_tobalance() { tobalance(allsample[4][0], allsample[4][1], allsample[4][2], allsample[4][3], allsample[4][4], allsample[4][5], allsample[4][6], allsample[4][7], allsample[4][8], allsample[4][9], allsample[4][10], allsample[4][11], allsample[4][12], allsample[4][13]) }
+        function telefon_amount_plus() { amount_plus(allsample[5][0], allsample[5][1], allsample[5][2], allsample[5][3], allsample[5][4], allsample[5][5], allsample[5][6], allsample[5][7], allsample[5][8], allsample[5][9], allsample[5][10], allsample[5][11], allsample[5][12], allsample[5][13]) }
+        function telefon_tobalance() { tobalance(allsample[5][0], allsample[5][1], allsample[5][2], allsample[5][3], allsample[5][4], allsample[5][5], allsample[5][6], allsample[5][7], allsample[5][8], allsample[5][9], allsample[5][10], allsample[5][11], allsample[5][12], allsample[5][13]) }
+        function varil_amount_plus() { amount_plus(allsample[6][0], allsample[6][1], allsample[6][2], allsample[6][3], allsample[6][4], allsample[6][5], allsample[6][6], allsample[6][7], allsample[6][8], allsample[6][9], allsample[6][10], allsample[6][11], allsample[6][12], allsample[6][13]) }
+        function varil_tobalance() { tobalance(allsample[6][0], allsample[6][1], allsample[6][2], allsample[6][3], allsample[6][4], allsample[6][5], allsample[6][6], allsample[6][7], allsample[6][8], allsample[6][9], allsample[6][10], allsample[6][11], allsample[6][12], allsample[6][13]) }
+        function tesla_amount_plus() { amount_plus(allsample[7][0], allsample[7][1], allsample[7][2], allsample[7][3], allsample[7][4], allsample[7][5], allsample[7][6], allsample[7][7], allsample[7][8], allsample[7][9], allsample[7][10], allsample[7][11], allsample[7][12], allsample[7][13]) }
+        function tesla_tobalance() { tobalance(allsample[7][0], allsample[7][1], allsample[7][2], allsample[7][3], allsample[7][4], allsample[7][5], allsample[7][6], allsample[7][7], allsample[7][8], allsample[7][9], allsample[7][10], allsample[7][11], allsample[7][12], allsample[7][13]) }
+        function roket_amount_plus() { amount_plus(allsample[8][0], allsample[8][1], allsample[8][2], allsample[8][3], allsample[8][4], allsample[8][5], allsample[8][6], allsample[8][7], allsample[8][8], allsample[8][9], allsample[8][10], allsample[8][11], allsample[8][12], allsample[8][13]) }
+        function roket_tobalance() { tobalance(allsample[8][0], allsample[8][1], allsample[8][2], allsample[8][3], allsample[8][4], allsample[8][5], allsample[8][6], allsample[8][7], allsample[8][8], allsample[8][9], allsample[8][10], allsample[8][11], allsample[8][12], allsample[8][13]) }
+        function eboy_amount_plus() { amount_plus(allsample[9][0], allsample[9][1], allsample[9][2], allsample[9][3], allsample[9][4], allsample[9][5], allsample[9][6], allsample[9][7], allsample[9][8], allsample[9][9], allsample[9][10], allsample[9][11], allsample[9][12], allsample[9][13]) }
+        function eboy_tobalance() { tobalance(allsample[9][0], allsample[9][1], allsample[9][2], allsample[9][3], allsample[9][4], allsample[9][5], allsample[9][6], allsample[9][7], allsample[9][8], allsample[9][9], allsample[9][10], allsample[9][11], allsample[9][12], allsample[9][13]) }
+
+        function amount_plus(amount, cost, value, cooldown, is_manager, dom5, dom6, dom7, x, katsayi, timer, transition, dom12, paha) {
+            if (balance >= cost) {
+                balance -= cost;
+                document.querySelector("#balance").innerHTML = balance - balance % 1;
+                cost *= paha;
+                cost = cost.toFixed(2);
+                dom6.innerHTML = cost;
+                amount++;
+                value = amount * katsayi;
+                dom7.innerHTML = value;
+                isrenk();
+                dom5.innerHTML = amount;
+                allsample[x][0] = amount;
+                allsample[x][1] = cost;
+                allsample[x][2] = value;
+                if (amount == 1) { dom5.style.background = "orange"; }
+            }
+        }
+        function isrenk() {
+            for (var i = 0; i < allsample.length; i++) {
+                if (balance >= allsample[i][1]) {
+                    allsample[i][6].style.background = "orange";
+                } else {
+                    allsample[i][6].style.background = "gray";
+                } if (allsample[i][4]) {
+                    if (balance >= allmanager[i]) {
+                        alldom[i].style.background = "orange"
+                    } else {
+                        alldom[i].style.background = "white"
+                    }
+                }
+            }
+        }
+
+        function tobalance(amount, cost, value, cooldown, is_manager, dom5, dom6, dom7, x, katsayi, timer, transition, dom12, paha) {
+            if (amount != 0 && cooldown) {
+                dom12.style.width = "204px";
+                dom12.style.transition = transition;
+                dom5.style.background = "gray";
+                cooldown = false;
+                allsample[x][3] = cooldown;
+                setTimeout(function () {
+                    dom12.style.width = "0px";
+                    dom12.style.transition = "0ms";
+                    cooldown = true;
+                    balance += value;
+                    dom5.style.background = "orange";
+                    document.querySelector("#balance").innerHTML = balance - balance % 1;
+                    allsample[x][3] = cooldown;
+                    isrenk();
+                }, timer)
+            }
+        }
+        function domates_manager() { if (allsample[0][4] && balance > 1000) { alldom[0].style.background = "green"; balance -= 1000; domates_tobalance(); allsample[0][4] = false; isrenk(); setInterval(function () { domates_tobalance(); }, 105) } }
+        function dergi_manager() { if (allsample[1][4] && balance > 15000) { alldom[1].style.background = "green"; balance -= 15000; dergi_tobalance(); allsample[1][4] = false; isrenk(); setInterval(function () { dergi_tobalance(); }, 105) } }
+        function elbise_manager() { if (allsample[2][4] && balance > 100000) { alldom[2].style.background = "green"; balance -= 100000; elbise_tobalance(); allsample[2][4] = false; isrenk(); setInterval(function () { elbise_tobalance(); }, 105) } }
+        function kulaklık_manager() { if (allsample[3][4] && balance > 50000) { alldom[3].style.background = "green"; balance -= 500000; kulaklık_tobalance(); allsample[3][4] = false; isrenk(); setInterval(function () { kulaklık_tobalance(); }, 105) } }
+        function mucevher_manager() { if (allsample[4][4] && balance > 1200000) { alldom[4].style.background = "green"; balance -= 1200000; mucevher_tobalance(); allsample[4][4] = false; isrenk(); setInterval(function () { mucevher_tobalance(); }, 105) } }
+        function telefon_manager() { if (allsample[5][4] && balance > 10000000) { alldom[5].style.background = "green"; balance -= 10000000; telefon_tobalance(); allsample[5][4] = false; isrenk(); setInterval(function () { telefon_tobalance(); }, 105) } }
+        function varil_manager() { if (allsample[6][4] && balance > 111000000) { alldom[6].style.background = "green"; balance -= 111000000; varil_tobalance(); allsample[6][4] = false; isrenk(); setInterval(function () { varil_tobalance(); }, 105) } }
+        function tesla_manager() { if (allsample[7][4] && balance > 555000000) { alldom[7].style.background = "green"; balance -= 555000000; tesla_tobalance(); allsample[7][4] = false; isrenk(); setInterval(function () { tesla_tobalance(); }, 105) } }
+        function roket_manager() { if (allsample[8][4] && balance > 10000000000) { alldom[8].style.background = "green"; balance -= 10000000000; roket_tobalance(); allsample[8][4] = false; isrenk(); setInterval(function () { roket_tobalance(); }, 105) } }
+        function eboy_manager() { if (allsample[9][4] && balance > 100000000000) { alldom[9].style.background = "green"; balance -= 100000000000; eboy_tobalance(); allsample[9][4] = false; isrenk(); setInterval(function () { eboy_tobalance(); }, 105) } }
+
+    </script>
+</body>
+
+</html>
